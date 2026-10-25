@@ -3,6 +3,8 @@
 namespace App\Infrastructure\Providers;
 
 use App\Application\Ports\In\AdjuntarSoporteRequisitoUseCase;
+use App\Application\Ports\In\AprobarCreditoUseCase;
+use App\Application\Ports\In\EvaluarRequisitoCreditoUseCase;
 use App\Application\Ports\In\IniciarSolicitudCreditoUseCase;
 use App\Application\Ports\In\ListarRequisitosCreditoUseCase;
 use App\Application\Ports\Out\MotocicletaRepositoryPort;
@@ -10,6 +12,8 @@ use App\Application\Ports\Out\RequisitoCreditoRepositoryPort;
 use App\Application\Ports\Out\VentaRepositoryPort;
 use App\Application\Ports\Out\VentaRequisitoRepositoryPort;
 use App\Application\Services\AdjuntarSoporteRequisitoService;
+use App\Application\Services\AprobarCreditoService;
+use App\Application\Services\EvaluarRequisitoCreditoService;
 use App\Application\Services\IniciarSolicitudCreditoService;
 use App\Application\Services\ListarRequisitosCreditoService;
 use App\Infrastructure\Adapters\Out\Persistence\Eloquent\Repositories\EloquentMotocicletaRepository;
@@ -37,6 +41,8 @@ class HexagonalServiceProvider extends ServiceProvider
         // Casos de Uso de Crédito
         $this->app->bind(IniciarSolicitudCreditoUseCase::class, IniciarSolicitudCreditoService::class);
         $this->app->bind(AdjuntarSoporteRequisitoUseCase::class, AdjuntarSoporteRequisitoService::class);
+        $this->app->bind(EvaluarRequisitoCreditoUseCase::class, EvaluarRequisitoCreditoService::class);
+        $this->app->bind(AprobarCreditoUseCase::class, AprobarCreditoService::class);
     }
 
     /**
