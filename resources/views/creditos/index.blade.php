@@ -25,7 +25,6 @@
         <div class="flex items-center gap-2 shrink-0">
             <button onclick="window.location.reload()" class="px-3.5 py-1.5 rounded bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-300 shadow-2xs transition flex items-center gap-1.5 active:translate-y-px">
                 <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-slate-500"></i>
-                <span>Actualizar Vista</span>
             </button>
         </div>
     </div>
@@ -180,9 +179,9 @@
                                     <option value="">-- Sin asignación de VIN inmediato (Trámite abierto) --</option>
                                     @foreach($motocicletasDisponibles as $moto)
                                         <option value="{{ $moto->vin }}">
-                                            {{ $moto->modeloMoto->marca ?? '' }} {{ $moto->modeloMoto->linea ?? $moto->modelo_referencia }} 
-                                            | VIN: {{ $moto->vin }} 
-                                            | Color: {{ $moto->color }} 
+                                            {{ $moto->modeloMoto->marca ?? '' }} {{ $moto->modeloMoto->linea ?? $moto->modelo_referencia }}
+                                            | VIN: {{ $moto->vin }}
+                                            | Color: {{ $moto->color }}
                                             | Precio: ${{ number_format($moto->precio_lista - $moto->descuento, 0, ',', '.') }} COP
                                         </option>
                                     @endforeach
@@ -623,7 +622,7 @@
             });
         }
 
-        const motoInfo = venta.motocicletas && venta.motocicletas.length > 0 
+        const motoInfo = venta.motocicletas && venta.motocicletas.length > 0
             ? `${venta.motocicletas[0].modelo_moto?.linea || venta.motocicletas[0].modelo_referencia} (VIN: ${venta.motocicletas[0].vin})`
             : 'Sin motocicleta asignada';
 

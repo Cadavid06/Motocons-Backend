@@ -36,11 +36,9 @@
             <div class="flex items-center gap-3">
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-300">
                     <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>PostgreSQL Neon Conectado</span>
                 </span>
                 <span class="hidden md:inline-flex items-center gap-1 px-2.5 py-1 rounded-sm text-xs font-medium bg-white text-slate-700 border border-slate-300 shadow-2xs">
                     <i data-lucide="layers" class="w-3.5 h-3.5 text-slate-500"></i>
-                    <span>Arquitectura Hexagonal</span>
                 </span>
             </div>
         </div>
