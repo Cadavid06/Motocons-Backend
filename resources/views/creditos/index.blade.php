@@ -29,9 +29,9 @@
         </div>
     </div>
 
-    <!-- Panel de Indicadores de Rendimiento (KPIs) -->
+    <!-- Panel de Indicadores de Rendimiento (KPIs Estilo JavaFX) -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white border border-slate-300 rounded-lg p-4 shadow-2xs">
+        <div class="bg-white border border-slate-300 rounded-md p-4 shadow-2xs">
             <div class="flex items-center justify-between">
                 <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Trámites Registrados</span>
                 <i data-lucide="folder" class="w-4 h-4 text-slate-400"></i>
@@ -42,36 +42,36 @@
             </div>
         </div>
 
-        <div class="bg-white border border-slate-300 rounded-lg p-4 shadow-2xs border-l-4 border-l-amber-500">
+        <div class="bg-white border border-slate-300 rounded-md p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">En Estudio de Crédito</span>
-                <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">En Estudio de Crédito</span>
+                <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
             </div>
             <div class="mt-2 flex items-baseline gap-2">
-                <span class="text-2xl font-bold text-amber-700">{{ $solicitudes->where('estado', 'EN_PROCESO_CREDITO')->count() }}</span>
+                <span class="text-2xl font-bold text-slate-900">{{ $solicitudes->where('estado', 'EN_PROCESO_CREDITO')->count() }}</span>
                 <span class="text-[11px] text-slate-500">en validación</span>
             </div>
         </div>
 
-        <div class="bg-white border border-slate-300 rounded-lg p-4 shadow-2xs border-l-4 border-l-emerald-600">
+        <div class="bg-white border border-slate-300 rounded-md p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">Créditos Aprobados</span>
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Créditos Aprobados</span>
+                <i data-lucide="check-circle" class="w-4 h-4 text-slate-400"></i>
             </div>
             <div class="mt-2 flex items-baseline gap-2">
-                <span class="text-2xl font-bold text-emerald-700">{{ $solicitudes->where('estado', 'PAGADA')->count() }}</span>
-                <span class="text-[11px] text-slate-500">listas entrega</span>
+                <span class="text-2xl font-bold text-slate-900">{{ $solicitudes->where('estado', 'PAGADA')->count() }}</span>
+                <span class="text-[11px] text-slate-500">formalizados</span>
             </div>
         </div>
 
-        <div class="bg-white border border-slate-300 rounded-lg p-4 shadow-2xs border-l-4 border-l-sky-600">
+        <div class="bg-white border border-slate-300 rounded-md p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-sky-700 uppercase tracking-wider">Motos Disponibles</span>
-                <i data-lucide="bike" class="w-4 h-4 text-sky-600"></i>
+                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Motos Disponibles</span>
+                <i data-lucide="bike" class="w-4 h-4 text-slate-400"></i>
             </div>
             <div class="mt-2 flex items-baseline gap-2">
-                <span class="text-2xl font-bold text-sky-700">{{ $motocicletasDisponibles->count() }}</span>
-                <span class="text-[11px] text-slate-500">en sala</span>
+                <span class="text-2xl font-bold text-slate-900">{{ $motocicletasDisponibles->count() }}</span>
+                <span class="text-[11px] text-slate-500">en patio</span>
             </div>
         </div>
     </div>
