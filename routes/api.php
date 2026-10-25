@@ -16,4 +16,6 @@ Route::prefix('creditos')->group(function () {
 
     // Solicitudes de Crédito
     Route::post('/solicitudes', [SolicitudCreditoController::class, 'store'])->name('creditos.solicitudes.store');
+    Route::post('/solicitudes/{ventaNumero}/requisitos/{requisitoId}/soporte', [SolicitudCreditoController::class, 'adjuntarSoporte'])
+        ->name('creditos.solicitudes.requisitos.soporte');
 });
