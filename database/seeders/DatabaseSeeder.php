@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RequisitoCreditoSeeder::class,
+            MotoconsDemoSeeder::class,
         ]);
     }
 }
