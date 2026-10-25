@@ -222,3 +222,35 @@ class ClienteController
     }
 }
 ```
+
+---
+
+## 📌 5. Caso de Referencia Implementado: Módulo de Créditos
+
+El módulo de créditos sigue estrictamente esta arquitectura:
+
+* **Puertos de Entrada (`app/Application/Ports/In/`):**
+  * `ListarRequisitosCreditoUseCase`
+  * `IniciarSolicitudCreditoUseCase`
+  * `AdjuntarSoporteRequisitoUseCase`
+  * `EvaluarRequisitoCreditoUseCase`
+  * `AprobarCreditoUseCase`
+* **Puertos de Salida (`app/Application/Ports/Out/`):**
+  * `RequisitoCreditoRepositoryPort`
+  * `VentaRepositoryPort`
+  * `VentaRequisitoRepositoryPort`
+  * `MotocicletaRepositoryPort`
+* **Servicios (`app/Application/Services/`):**
+  * `ListarRequisitosCreditoService`
+  * `IniciarSolicitudCreditoService`
+  * `AdjuntarSoporteRequisitoService`
+  * `EvaluarRequisitoCreditoService`
+  * `AprobarCreditoService`
+* **Adaptadores de Salida (`app/Infrastructure/Adapters/Out/Persistence/Eloquent/`):**
+  * Repositorios: `EloquentRequisitoCreditoRepository`, `EloquentVentaRepository`, `EloquentVentaRequisitoRepository`, `EloquentMotocicletaRepository`.
+  * Mappers: `RequisitoCreditoMapper`, `VentaMapper`, `VentaRequisitoMapper`, `MotocicletaMapper`.
+* **Adaptadores de Entrada (`app/Infrastructure/Adapters/In/Http/`):**
+  * Controladores: `RequisitoCreditoController`, `SolicitudCreditoController`, `CreditosWebController`.
+  * FormRequests: `IniciarSolicitudCreditoRequest`, `AdjuntarSoporteRequest`, `EvaluarRequisitoRequest`, `AprobarCreditoRequest`.
+* **Pruebas Automatizadas (`tests/Feature/`):**
+  * `RequisitoCreditoTest`, `SolicitudCreditoTest`, `AdjuntarSoporteRequisitoTest`, `AprobacionCreditoTest`, `CreditosWebTest`.

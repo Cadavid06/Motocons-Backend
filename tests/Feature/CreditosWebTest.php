@@ -26,7 +26,7 @@ class CreditosWebTest extends TestCase
 
         $response->assertOk()
             ->assertViewIs('creditos.index')
-            ->assertSee('Módulo de Créditos de Vehículos')
+            ->assertSee('Gestión de Créditos')
             ->assertSee('Crédito Brilla')
             ->assertSee('ServiCrédito')
             ->assertSee('Albeiro Gómez');
