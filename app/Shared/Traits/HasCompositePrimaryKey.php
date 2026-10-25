@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Shared\Traits;
 
@@ -18,7 +18,7 @@ trait HasCompositePrimaryKey
     protected function setKeysForSaveQuery($query)
     {
         $keys = $this->getKeyName();
-        if (!is_array($keys)) {
+        if (! is_array($keys)) {
             return parent::setKeysForSaveQuery($query);
         }
 
@@ -44,6 +44,7 @@ trait HasCompositePrimaryKey
                     $query->where($key, $ids[$key]);
                 }
             }
+
             return $query->first();
         }
 

@@ -19,16 +19,55 @@ class Pago
         private ?DateTimeImmutable $cierreFechaInicio = null
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getMedio(): string { return $this->medio; }
-    public function getValor(): float { return $this->valor; }
-    public function getFecha(): DateTimeImmutable { return $this->fecha; }
-    public function getEstado(): string { return $this->estado; }
-    public function getReferenciaAutorizacion(): ?string { return $this->referenciaAutorizacion; }
-    public function getVentaNumero(): ?string { return $this->ventaNumero; }
-    public function getOrdenServicioNumero(): ?string { return $this->ordenServicioNumero; }
-    public function getCierreTipo(): ?string { return $this->cierreTipo; }
-    public function getCierreFechaInicio(): ?DateTimeImmutable { return $this->cierreFechaInicio; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getMedio(): string
+    {
+        return $this->medio;
+    }
+
+    public function getValor(): float
+    {
+        return $this->valor;
+    }
+
+    public function getFecha(): DateTimeImmutable
+    {
+        return $this->fecha;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getReferenciaAutorizacion(): ?string
+    {
+        return $this->referenciaAutorizacion;
+    }
+
+    public function getVentaNumero(): ?string
+    {
+        return $this->ventaNumero;
+    }
+
+    public function getOrdenServicioNumero(): ?string
+    {
+        return $this->ordenServicioNumero;
+    }
+
+    public function getCierreTipo(): ?string
+    {
+        return $this->cierreTipo;
+    }
+
+    public function getCierreFechaInicio(): ?DateTimeImmutable
+    {
+        return $this->cierreFechaInicio;
+    }
 
     public function estaAprobado(): bool
     {

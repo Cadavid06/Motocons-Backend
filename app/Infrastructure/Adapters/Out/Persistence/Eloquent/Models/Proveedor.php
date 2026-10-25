@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     protected $table = 'proveedor';
+
     protected $primaryKey = 'nit';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [

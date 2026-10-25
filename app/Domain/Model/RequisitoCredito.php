@@ -11,10 +11,25 @@ class RequisitoCredito
         private bool $obligatorio = true
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getMedioPago(): string { return $this->medioPago; }
-    public function getDescripcion(): string { return $this->descripcion; }
-    public function isObligatorio(): bool { return $this->obligatorio; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getMedioPago(): string
+    {
+        return $this->medioPago;
+    }
+
+    public function getDescripcion(): string
+    {
+        return $this->descripcion;
+    }
+
+    public function isObligatorio(): bool
+    {
+        return $this->obligatorio;
+    }
 
     public function esParaBrilla(): bool
     {

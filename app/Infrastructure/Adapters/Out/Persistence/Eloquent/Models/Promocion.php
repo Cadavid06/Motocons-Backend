@@ -2,12 +2,13 @@
 
 namespace App\Infrastructure\Adapters\Out\Persistence\Eloquent\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Promocion extends Model
 {
     protected $table = 'promocion';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -20,9 +21,9 @@ class Promocion extends Model
     ];
 
     protected $casts = [
-        'valor'        => 'decimal:2',
+        'valor' => 'decimal:2',
         'fecha_inicio' => 'date',
-        'fecha_fin'    => 'date',
+        'fecha_fin' => 'date',
     ];
 
     public function ventas()
@@ -36,8 +37,9 @@ class Promocion extends Model
     public function scopeVigente(Builder $query): Builder
     {
         $hoy = now()->toDateString();
+
         return $query->where('fecha_inicio', '<=', $hoy)
-                     ->where('fecha_fin', '>=', $hoy);
+            ->where('fecha_fin', '>=', $hoy);
     }
 
     /**
@@ -48,6 +50,7 @@ class Promocion extends Model
         if (strtoupper($this->tipo) === 'PORCENTAJE') {
             return round($precioBase * ($this->valor / 100), 2);
         }
-        return min((float)$this->valor, $precioBase);
+
+        return min((float) $this->valor, $precioBase);
     }
 }

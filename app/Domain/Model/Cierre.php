@@ -13,10 +13,25 @@ class Cierre
         private DateTimeImmutable $fechaCierre
     ) {}
 
-    public function getTipo(): string { return $this->tipo; }
-    public function getFechaInicio(): DateTimeImmutable { return $this->fechaInicio; }
-    public function getFechaFin(): DateTimeImmutable { return $this->fechaFin; }
-    public function getFechaCierre(): DateTimeImmutable { return $this->fechaCierre; }
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function getFechaInicio(): DateTimeImmutable
+    {
+        return $this->fechaInicio;
+    }
+
+    public function getFechaFin(): DateTimeImmutable
+    {
+        return $this->fechaFin;
+    }
+
+    public function getFechaCierre(): DateTimeImmutable
+    {
+        return $this->fechaCierre;
+    }
 
     public function esCierreSemanalVentas(): bool
     {

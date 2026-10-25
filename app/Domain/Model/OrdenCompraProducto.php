@@ -11,10 +11,25 @@ class OrdenCompraProducto
         private float $costo
     ) {}
 
-    public function getOrdenCompraNumero(): string { return $this->ordenCompraNumero; }
-    public function getProductoReferencia(): string { return $this->productoReferencia; }
-    public function getCantidad(): int { return $this->cantidad; }
-    public function getCosto(): float { return $this->costo; }
+    public function getOrdenCompraNumero(): string
+    {
+        return $this->ordenCompraNumero;
+    }
+
+    public function getProductoReferencia(): string
+    {
+        return $this->productoReferencia;
+    }
+
+    public function getCantidad(): int
+    {
+        return $this->cantidad;
+    }
+
+    public function getCosto(): float
+    {
+        return $this->costo;
+    }
 
     public function subtotal(): float
     {

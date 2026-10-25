@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class OrdenServicio extends Model
 {
     protected $table = 'orden_servicio';
+
     protected $primaryKey = 'numero';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -25,8 +29,8 @@ class OrdenServicio extends Model
     ];
 
     protected $casts = [
-        'fecha_ingreso'     => 'datetime',
-        'kilometraje'       => 'integer',
+        'fecha_ingreso' => 'datetime',
+        'kilometraje' => 'integer',
         'nro_mant_garantia' => 'integer',
     ];
 
@@ -38,7 +42,7 @@ class OrdenServicio extends Model
     public function mecanico()
     {
         return $this->belongsTo(Empleado::class, 'mecanico_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->mecanico_num_doc);
+            ->where('num_doc', $this->mecanico_num_doc);
     }
 
     public function productosDetalles()

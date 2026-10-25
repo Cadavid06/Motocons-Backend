@@ -1,7 +1,5 @@
 <?php
 
-use App\Infrastructure\Adapters\Out\Persistence\Eloquent\Models\Usuario;
-
 return [
 
     /*

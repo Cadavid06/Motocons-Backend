@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     protected $table = 'producto';
+
     protected $primaryKey = 'referencia';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -23,8 +27,8 @@ class Producto extends Model
 
     protected $casts = [
         'precio_vigente' => 'decimal:2',
-        'tarifa_iva'     => 'decimal:2',
-        'tarifa_inc'     => 'decimal:2',
+        'tarifa_iva' => 'decimal:2',
+        'tarifa_inc' => 'decimal:2',
     ];
 
     public function modeloMoto()

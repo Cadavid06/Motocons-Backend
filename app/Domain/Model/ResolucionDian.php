@@ -15,16 +15,40 @@ class ResolucionDian
         private DateTimeImmutable $vigenciaHasta
     ) {}
 
-    public function getNumeroResolucion(): string { return $this->numeroResolucion; }
-    public function getPrefijo(): ?string { return $this->prefijo; }
-    public function getRangoDesde(): int { return $this->rangoDesde; }
-    public function getRangoHasta(): int { return $this->rangoHasta; }
-    public function getVigenciaDesde(): DateTimeImmutable { return $this->vigenciaDesde; }
-    public function getVigenciaHasta(): DateTimeImmutable { return $this->vigenciaHasta; }
+    public function getNumeroResolucion(): string
+    {
+        return $this->numeroResolucion;
+    }
+
+    public function getPrefijo(): ?string
+    {
+        return $this->prefijo;
+    }
+
+    public function getRangoDesde(): int
+    {
+        return $this->rangoDesde;
+    }
+
+    public function getRangoHasta(): int
+    {
+        return $this->rangoHasta;
+    }
+
+    public function getVigenciaDesde(): DateTimeImmutable
+    {
+        return $this->vigenciaDesde;
+    }
+
+    public function getVigenciaHasta(): DateTimeImmutable
+    {
+        return $this->vigenciaHasta;
+    }
 
     public function esVigente(?DateTimeImmutable $fecha = null): bool
     {
-        $fecha = $fecha ?? new DateTimeImmutable();
+        $fecha = $fecha ?? new DateTimeImmutable;
+
         return $fecha >= $this->vigenciaDesde && $fecha <= $this->vigenciaHasta;
     }
 

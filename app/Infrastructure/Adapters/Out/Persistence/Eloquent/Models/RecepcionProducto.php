@@ -2,16 +2,19 @@
 
 namespace App\Infrastructure\Adapters\Out\Persistence\Eloquent\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Shared\Traits\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Model;
 
 class RecepcionProducto extends Model
 {
     use HasCompositePrimaryKey;
 
     protected $table = 'recepcion_producto';
+
     protected $primaryKey = ['recepcion_id', 'producto_referencia'];
+
     public $incrementing = false;
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -21,7 +24,7 @@ class RecepcionProducto extends Model
     ];
 
     protected $casts = [
-        'recepcion_id'      => 'integer',
+        'recepcion_id' => 'integer',
         'cantidad_recibida' => 'integer',
     ];
 

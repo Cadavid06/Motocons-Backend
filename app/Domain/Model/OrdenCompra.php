@@ -16,11 +16,30 @@ class OrdenCompra
         private string $proveedorNit
     ) {}
 
-    public function getNumero(): string { return $this->numero; }
-    public function getFecha(): DateTimeImmutable { return $this->fecha; }
-    public function getEstado(): string { return $this->estado; }
-    public function getProveedorNit(): string { return $this->proveedorNit; }
-    public function getDetalles(): array { return $this->detalles; }
+    public function getNumero(): string
+    {
+        return $this->numero;
+    }
+
+    public function getFecha(): DateTimeImmutable
+    {
+        return $this->fecha;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getProveedorNit(): string
+    {
+        return $this->proveedorNit;
+    }
+
+    public function getDetalles(): array
+    {
+        return $this->detalles;
+    }
 
     public function agregarDetalle(OrdenCompraProducto $detalle): void
     {
@@ -43,6 +62,7 @@ class OrdenCompra
         foreach ($this->detalles as $detalle) {
             $total += $detalle->subtotal();
         }
+
         return round($total, 2);
     }
 }

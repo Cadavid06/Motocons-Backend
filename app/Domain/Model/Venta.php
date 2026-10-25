@@ -2,13 +2,14 @@
 
 namespace App\Domain\Model;
 
-use DateTimeImmutable;
 use App\Domain\Exceptions\VentaNoEditableException;
+use DateTimeImmutable;
 
 class Venta
 {
     /** @var Motocicleta[] */
     private array $motocicletas = [];
+
     /** @var VentaRequisito[] */
     private array $requisitos = [];
 
@@ -30,21 +31,80 @@ class Venta
         private ?DateTimeImmutable $aceptacionTerminos = null
     ) {}
 
-    public function getNumero(): string { return $this->numero; }
-    public function getFecha(): DateTimeImmutable { return $this->fecha; }
-    public function getCanal(): string { return $this->canal; }
-    public function getEstado(): string { return $this->estado; }
-    public function getClienteTipoDoc(): string { return $this->clienteTipoDoc; }
-    public function getClienteNumDoc(): string { return $this->clienteNumDoc; }
-    public function getVendedorTipoDoc(): ?string { return $this->vendedorTipoDoc; }
-    public function getVendedorNumDoc(): ?string { return $this->vendedorNumDoc; }
-    public function getPromocionId(): ?int { return $this->promocionId; }
-    public function getCierreTipo(): ?string { return $this->cierreTipo; }
-    public function getCierreFechaInicio(): ?DateTimeImmutable { return $this->cierreFechaInicio; }
-    public function getLiquidacionId(): ?int { return $this->liquidacionId; }
-    public function getComisionPorcentaje(): ?float { return $this->comisionPorcentaje; }
-    public function getComisionValor(): ?float { return $this->comisionValor; }
-    public function getAceptacionTerminos(): ?DateTimeImmutable { return $this->aceptacionTerminos; }
+    public function getNumero(): string
+    {
+        return $this->numero;
+    }
+
+    public function getFecha(): DateTimeImmutable
+    {
+        return $this->fecha;
+    }
+
+    public function getCanal(): string
+    {
+        return $this->canal;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getClienteTipoDoc(): string
+    {
+        return $this->clienteTipoDoc;
+    }
+
+    public function getClienteNumDoc(): string
+    {
+        return $this->clienteNumDoc;
+    }
+
+    public function getVendedorTipoDoc(): ?string
+    {
+        return $this->vendedorTipoDoc;
+    }
+
+    public function getVendedorNumDoc(): ?string
+    {
+        return $this->vendedorNumDoc;
+    }
+
+    public function getPromocionId(): ?int
+    {
+        return $this->promocionId;
+    }
+
+    public function getCierreTipo(): ?string
+    {
+        return $this->cierreTipo;
+    }
+
+    public function getCierreFechaInicio(): ?DateTimeImmutable
+    {
+        return $this->cierreFechaInicio;
+    }
+
+    public function getLiquidacionId(): ?int
+    {
+        return $this->liquidacionId;
+    }
+
+    public function getComisionPorcentaje(): ?float
+    {
+        return $this->comisionPorcentaje;
+    }
+
+    public function getComisionValor(): ?float
+    {
+        return $this->comisionValor;
+    }
+
+    public function getAceptacionTerminos(): ?DateTimeImmutable
+    {
+        return $this->aceptacionTerminos;
+    }
 
     public function esVentaWeb(): bool
     {
@@ -63,7 +123,7 @@ class Venta
 
     public function registrarPago(): void
     {
-        if (!$this->puedeModificarse()) {
+        if (! $this->puedeModificarse()) {
             throw VentaNoEditableException::estadoNoPermiteCambios($this->numero, $this->estado);
         }
         $this->estado = 'PAGADA';
@@ -97,5 +157,26 @@ class Venta
     public function asociarRequisito(VentaRequisito $req): void
     {
         $this->requisitos[] = $req;
+    }
+
+    /**
+     * @return VentaRequisito[]
+     */
+    public function getRequisitos(): array
+    {
+        return $this->requisitos;
+    }
+
+    /**
+     * @return Motocicleta[]
+     */
+    public function getMotocicletas(): array
+    {
+        return $this->motocicletas;
+    }
+
+    public function iniciarProcesoCredito(): void
+    {
+        $this->estado = 'EN_PROCESO_CREDITO';
     }
 }

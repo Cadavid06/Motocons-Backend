@@ -13,12 +13,35 @@ class Producto
         private float $tarifaInc = 0.0
     ) {}
 
-    public function getReferencia(): string { return $this->referencia; }
-    public function getNombre(): string { return $this->nombre; }
-    public function getTipo(): string { return $this->tipo; }
-    public function getPrecioVigente(): float { return $this->precioVigente; }
-    public function getTarifaIva(): float { return $this->tarifaIva; }
-    public function getTarifaInc(): float { return $this->tarifaInc; }
+    public function getReferencia(): string
+    {
+        return $this->referencia;
+    }
+
+    public function getNombre(): string
+    {
+        return $this->nombre;
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function getPrecioVigente(): float
+    {
+        return $this->precioVigente;
+    }
+
+    public function getTarifaIva(): float
+    {
+        return $this->tarifaIva;
+    }
+
+    public function getTarifaInc(): float
+    {
+        return $this->tarifaInc;
+    }
 
     public function esMoto(): bool
     {
@@ -39,6 +62,7 @@ class Producto
     {
         $iva = $this->precioVigente * ($this->tarifaIva / 100);
         $inc = $this->precioVigente * ($this->tarifaInc / 100);
+
         return round($this->precioVigente + $iva + $inc, 2);
     }
 

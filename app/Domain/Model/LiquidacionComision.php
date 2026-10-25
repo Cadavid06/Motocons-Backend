@@ -12,11 +12,30 @@ class LiquidacionComision
         private string $empleadoNumDoc
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getPeriodo(): string { return $this->periodo; }
-    public function getEstado(): string { return $this->estado; }
-    public function getEmpleadoTipoDoc(): string { return $this->empleadoTipoDoc; }
-    public function getEmpleadoNumDoc(): string { return $this->empleadoNumDoc; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getPeriodo(): string
+    {
+        return $this->periodo;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getEmpleadoTipoDoc(): string
+    {
+        return $this->empleadoTipoDoc;
+    }
+
+    public function getEmpleadoNumDoc(): string
+    {
+        return $this->empleadoNumDoc;
+    }
 
     public function aprobar(): void
     {

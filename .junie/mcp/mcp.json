@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/home/albeiro/.config/herd-lite/bin/php",
+            "args": [
+                "/home/albeiro/Documentos/Universidad/9no semestre/DIPLOMADO/RECURSOS/motocons/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}

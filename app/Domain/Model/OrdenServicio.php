@@ -2,8 +2,8 @@
 
 namespace App\Domain\Model;
 
-use DateTimeImmutable;
 use App\Domain\Exceptions\GarantiaExcedidaException;
+use DateTimeImmutable;
 
 class OrdenServicio
 {
@@ -26,16 +26,55 @@ class OrdenServicio
         }
     }
 
-    public function getNumero(): string { return $this->numero; }
-    public function getFechaIngreso(): DateTimeImmutable { return $this->fechaIngreso; }
-    public function getKilometraje(): int { return $this->kilometraje; }
-    public function getTipo(): string { return $this->tipo; }
-    public function getMotocicletaVin(): string { return $this->motocicletaVin; }
-    public function getNroMantGarantia(): ?int { return $this->nroMantGarantia; }
-    public function getDiagnostico(): ?string { return $this->diagnostico; }
-    public function getMecanicoTipoDoc(): ?string { return $this->mecanicoTipoDoc; }
-    public function getMecanicoNumDoc(): ?string { return $this->mecanicoNumDoc; }
-    public function getDetalles(): array { return $this->detalles; }
+    public function getNumero(): string
+    {
+        return $this->numero;
+    }
+
+    public function getFechaIngreso(): DateTimeImmutable
+    {
+        return $this->fechaIngreso;
+    }
+
+    public function getKilometraje(): int
+    {
+        return $this->kilometraje;
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function getMotocicletaVin(): string
+    {
+        return $this->motocicletaVin;
+    }
+
+    public function getNroMantGarantia(): ?int
+    {
+        return $this->nroMantGarantia;
+    }
+
+    public function getDiagnostico(): ?string
+    {
+        return $this->diagnostico;
+    }
+
+    public function getMecanicoTipoDoc(): ?string
+    {
+        return $this->mecanicoTipoDoc;
+    }
+
+    public function getMecanicoNumDoc(): ?string
+    {
+        return $this->mecanicoNumDoc;
+    }
+
+    public function getDetalles(): array
+    {
+        return $this->detalles;
+    }
 
     public function agregarDetalle(OrdenServicioProducto $detalle): void
     {
@@ -56,6 +95,7 @@ class OrdenServicio
         foreach ($this->detalles as $detalle) {
             $total += $detalle->subtotal();
         }
+
         return round($total, 2);
     }
 }

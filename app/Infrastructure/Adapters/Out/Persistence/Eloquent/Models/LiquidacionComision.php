@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LiquidacionComision extends Model
 {
     protected $table = 'liquidacion_comision';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -19,7 +20,7 @@ class LiquidacionComision extends Model
     public function empleado()
     {
         return $this->belongsTo(Empleado::class, 'empleado_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->empleado_num_doc);
+            ->where('num_doc', $this->empleado_num_doc);
     }
 
     public function ventas()

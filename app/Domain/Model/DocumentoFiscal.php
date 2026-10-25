@@ -28,23 +28,90 @@ class DocumentoFiscal
         private ?int $corrigeConsecutivo = null
     ) {}
 
-    public function getPrefijo(): string { return $this->prefijo; }
-    public function getConsecutivo(): int { return $this->consecutivo; }
-    public function getTipo(): string { return $this->tipo; }
-    public function getFechaHoraEmision(): DateTimeImmutable { return $this->fechaHoraEmision; }
-    public function getEstadoDian(): string { return $this->estadoDian; }
-    public function getFormaPago(): string { return $this->formaPago; }
-    public function getClienteTipoDoc(): string { return $this->clienteTipoDoc; }
-    public function getClienteNumDoc(): string { return $this->clienteNumDoc; }
-    public function getCufeCude(): ?string { return $this->cufeCude; }
-    public function getXmlFirmado(): ?string { return $this->xmlFirmado; }
-    public function getQr(): ?string { return $this->qr; }
-    public function getVentaNumero(): ?string { return $this->ventaNumero; }
-    public function getOrdenServicioNumero(): ?string { return $this->ordenServicioNumero; }
-    public function getNumeroResolucion(): ?string { return $this->numeroResolucion; }
-    public function getCorrigePrefijo(): ?string { return $this->corrigePrefijo; }
-    public function getCorrigeConsecutivo(): ?int { return $this->corrigeConsecutivo; }
-    public function getDetalles(): array { return $this->detalles; }
+    public function getPrefijo(): string
+    {
+        return $this->prefijo;
+    }
+
+    public function getConsecutivo(): int
+    {
+        return $this->consecutivo;
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function getFechaHoraEmision(): DateTimeImmutable
+    {
+        return $this->fechaHoraEmision;
+    }
+
+    public function getEstadoDian(): string
+    {
+        return $this->estadoDian;
+    }
+
+    public function getFormaPago(): string
+    {
+        return $this->formaPago;
+    }
+
+    public function getClienteTipoDoc(): string
+    {
+        return $this->clienteTipoDoc;
+    }
+
+    public function getClienteNumDoc(): string
+    {
+        return $this->clienteNumDoc;
+    }
+
+    public function getCufeCude(): ?string
+    {
+        return $this->cufeCude;
+    }
+
+    public function getXmlFirmado(): ?string
+    {
+        return $this->xmlFirmado;
+    }
+
+    public function getQr(): ?string
+    {
+        return $this->qr;
+    }
+
+    public function getVentaNumero(): ?string
+    {
+        return $this->ventaNumero;
+    }
+
+    public function getOrdenServicioNumero(): ?string
+    {
+        return $this->ordenServicioNumero;
+    }
+
+    public function getNumeroResolucion(): ?string
+    {
+        return $this->numeroResolucion;
+    }
+
+    public function getCorrigePrefijo(): ?string
+    {
+        return $this->corrigePrefijo;
+    }
+
+    public function getCorrigeConsecutivo(): ?int
+    {
+        return $this->corrigeConsecutivo;
+    }
+
+    public function getDetalles(): array
+    {
+        return $this->detalles;
+    }
 
     public function agregarDetalle(DocumentoFiscalDetalle $detalle): void
     {
@@ -70,6 +137,7 @@ class DocumentoFiscal
         foreach ($this->detalles as $d) {
             $sub += $d->subtotalNeto();
         }
+
         return round($sub, 2);
     }
 
@@ -79,6 +147,7 @@ class DocumentoFiscal
         foreach ($this->detalles as $d) {
             $total += $d->totalConImpuestos();
         }
+
         return round($total, 2);
     }
 }

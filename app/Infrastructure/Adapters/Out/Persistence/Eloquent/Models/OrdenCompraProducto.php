@@ -2,16 +2,19 @@
 
 namespace App\Infrastructure\Adapters\Out\Persistence\Eloquent\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Shared\Traits\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Model;
 
 class OrdenCompraProducto extends Model
 {
     use HasCompositePrimaryKey;
 
     protected $table = 'orden_compra_producto';
+
     protected $primaryKey = ['orden_compra_numero', 'producto_referencia'];
+
     public $incrementing = false;
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -23,7 +26,7 @@ class OrdenCompraProducto extends Model
 
     protected $casts = [
         'cantidad' => 'integer',
-        'costo'    => 'decimal:2',
+        'costo' => 'decimal:2',
     ];
 
     public function ordenCompra()

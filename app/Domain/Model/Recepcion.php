@@ -16,11 +16,30 @@ class Recepcion
         private string $ordenCompraNumero
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getFecha(): DateTimeImmutable { return $this->fecha; }
-    public function getCufeFacturaProveedor(): ?string { return $this->cufeFacturaProveedor; }
-    public function getOrdenCompraNumero(): string { return $this->ordenCompraNumero; }
-    public function getDetalles(): array { return $this->detalles; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getFecha(): DateTimeImmutable
+    {
+        return $this->fecha;
+    }
+
+    public function getCufeFacturaProveedor(): ?string
+    {
+        return $this->cufeFacturaProveedor;
+    }
+
+    public function getOrdenCompraNumero(): string
+    {
+        return $this->ordenCompraNumero;
+    }
+
+    public function getDetalles(): array
+    {
+        return $this->detalles;
+    }
 
     public function agregarDetalle(RecepcionProducto $detalle): void
     {

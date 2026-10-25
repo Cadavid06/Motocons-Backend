@@ -2,8 +2,8 @@
 
 namespace App\Domain\Model;
 
-use DateTimeImmutable;
 use App\Domain\Exceptions\GarantiaExcedidaException;
+use DateTimeImmutable;
 
 class Motocicleta
 {
@@ -21,17 +21,60 @@ class Motocicleta
         private ?string $ventaNumero = null
     ) {}
 
-    public function getVin(): string { return $this->vin; }
-    public function getNumeroMotor(): string { return $this->numeroMotor; }
-    public function getColor(): string { return $this->color; }
-    public function getEstado(): string { return $this->estado; }
-    public function getModeloReferencia(): string { return $this->modeloReferencia; }
-    public function getPrecioLista(): float { return $this->precioLista; }
-    public function getDescuento(): float { return $this->descuento; }
-    public function getPlaca(): ?string { return $this->placa; }
-    public function getGarantiaHasta(): ?DateTimeImmutable { return $this->garantiaHasta; }
-    public function getRecepcionId(): ?int { return $this->recepcionId; }
-    public function getVentaNumero(): ?string { return $this->ventaNumero; }
+    public function getVin(): string
+    {
+        return $this->vin;
+    }
+
+    public function getNumeroMotor(): string
+    {
+        return $this->numeroMotor;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getModeloReferencia(): string
+    {
+        return $this->modeloReferencia;
+    }
+
+    public function getPrecioLista(): float
+    {
+        return $this->precioLista;
+    }
+
+    public function getDescuento(): float
+    {
+        return $this->descuento;
+    }
+
+    public function getPlaca(): ?string
+    {
+        return $this->placa;
+    }
+
+    public function getGarantiaHasta(): ?DateTimeImmutable
+    {
+        return $this->garantiaHasta;
+    }
+
+    public function getRecepcionId(): ?int
+    {
+        return $this->recepcionId;
+    }
+
+    public function getVentaNumero(): ?string
+    {
+        return $this->ventaNumero;
+    }
 
     public function getPrecioFinal(): float
     {
@@ -48,11 +91,17 @@ class Motocicleta
         $this->placa = strtoupper($placa);
     }
 
+    public function reservarParaVenta(string $ventaNumero): void
+    {
+        $this->estado = 'RESERVADA';
+        $this->ventaNumero = $ventaNumero;
+    }
+
     public function marcarComoVendida(string $ventaNumero, int $mesesGarantia = 12): void
     {
         $this->estado = 'VENDIDA';
         $this->ventaNumero = $ventaNumero;
-        $this->garantiaHasta = (new DateTimeImmutable())->modify("+{$mesesGarantia} months");
+        $this->garantiaHasta = (new DateTimeImmutable)->modify("+{$mesesGarantia} months");
     }
 
     /**
@@ -64,7 +113,7 @@ class Motocicleta
             throw GarantiaExcedidaException::limiteRevisionesAlcanzado($this->vin);
         }
 
-        if ($this->garantiaHasta !== null && (new DateTimeImmutable()) > $this->garantiaHasta) {
+        if ($this->garantiaHasta !== null && (new DateTimeImmutable) > $this->garantiaHasta) {
             throw GarantiaExcedidaException::garantiaVencidaPorFecha($this->vin);
         }
     }

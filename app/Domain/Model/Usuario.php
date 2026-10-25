@@ -15,17 +15,55 @@ class Usuario
         private ?string $empleadoNumDoc = null
     ) {}
 
-    public function getUsername(): string { return $this->username; }
-    public function getPasswordHash(): string { return $this->passwordHash; }
-    public function getRol(): string { return $this->rol; }
-    public function isActivo(): bool { return $this->activo; }
-    public function getClienteTipoDoc(): ?string { return $this->clienteTipoDoc; }
-    public function getClienteNumDoc(): ?string { return $this->clienteNumDoc; }
-    public function getEmpleadoTipoDoc(): ?string { return $this->empleadoTipoDoc; }
-    public function getEmpleadoNumDoc(): ?string { return $this->empleadoNumDoc; }
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
 
-    public function activar(): void { $this->activo = true; }
-    public function desactivar(): void { $this->activo = false; }
+    public function getPasswordHash(): string
+    {
+        return $this->passwordHash;
+    }
+
+    public function getRol(): string
+    {
+        return $this->rol;
+    }
+
+    public function isActivo(): bool
+    {
+        return $this->activo;
+    }
+
+    public function getClienteTipoDoc(): ?string
+    {
+        return $this->clienteTipoDoc;
+    }
+
+    public function getClienteNumDoc(): ?string
+    {
+        return $this->clienteNumDoc;
+    }
+
+    public function getEmpleadoTipoDoc(): ?string
+    {
+        return $this->empleadoTipoDoc;
+    }
+
+    public function getEmpleadoNumDoc(): ?string
+    {
+        return $this->empleadoNumDoc;
+    }
+
+    public function activar(): void
+    {
+        $this->activo = true;
+    }
+
+    public function desactivar(): void
+    {
+        $this->activo = false;
+    }
 
     public function cambiarPassword(string $nuevoPasswordHash): void
     {

@@ -15,14 +15,45 @@ class ModeloMoto
         private ?string $fichaTecnica = null
     ) {}
 
-    public function getReferencia(): string { return $this->referencia; }
-    public function getMarca(): string { return $this->marca; }
-    public function getLinea(): string { return $this->linea; }
-    public function getAnio(): int { return $this->anio; }
-    public function getGama(): string { return $this->gama; }
-    public function getPropulsion(): string { return $this->propulsion; }
-    public function getCilindrajeCc(): ?int { return $this->cilindrajeCc; }
-    public function getFichaTecnica(): ?string { return $this->fichaTecnica; }
+    public function getReferencia(): string
+    {
+        return $this->referencia;
+    }
+
+    public function getMarca(): string
+    {
+        return $this->marca;
+    }
+
+    public function getLinea(): string
+    {
+        return $this->linea;
+    }
+
+    public function getAnio(): int
+    {
+        return $this->anio;
+    }
+
+    public function getGama(): string
+    {
+        return $this->gama;
+    }
+
+    public function getPropulsion(): string
+    {
+        return $this->propulsion;
+    }
+
+    public function getCilindrajeCc(): ?int
+    {
+        return $this->cilindrajeCc;
+    }
+
+    public function getFichaTecnica(): ?string
+    {
+        return $this->fichaTecnica;
+    }
 
     public function esElectrica(): bool
     {

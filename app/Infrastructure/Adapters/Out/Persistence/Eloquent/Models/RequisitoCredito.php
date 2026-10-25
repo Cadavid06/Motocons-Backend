@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RequisitoCredito extends Model
 {
     protected $table = 'requisito_credito';
+
     public $timestamps = false;
 
     protected $fillable = [

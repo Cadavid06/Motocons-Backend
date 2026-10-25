@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recepcion extends Model
 {
     protected $table = 'recepcion';
+
     public $timestamps = false;
 
     protected $fillable = [

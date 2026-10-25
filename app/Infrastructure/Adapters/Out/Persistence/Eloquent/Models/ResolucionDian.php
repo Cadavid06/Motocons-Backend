@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ResolucionDian extends Model
 {
     protected $table = 'resolucion_dian';
+
     protected $primaryKey = 'numero_resolucion';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,8 +26,8 @@ class ResolucionDian extends Model
     ];
 
     protected $casts = [
-        'rango_desde'    => 'integer',
-        'rango_hasta'    => 'integer',
+        'rango_desde' => 'integer',
+        'rango_hasta' => 'integer',
         'vigencia_desde' => 'date',
         'vigencia_hasta' => 'date',
     ];

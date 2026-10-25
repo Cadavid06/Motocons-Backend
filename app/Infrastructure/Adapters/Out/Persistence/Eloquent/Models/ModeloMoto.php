@@ -2,15 +2,19 @@
 
 namespace App\Infrastructure\Adapters\Out\Persistence\Eloquent\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class ModeloMoto extends Model
 {
     protected $table = 'modelo_moto';
+
     protected $primaryKey = 'referencia';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -25,7 +29,7 @@ class ModeloMoto extends Model
     ];
 
     protected $casts = [
-        'anio'          => 'integer',
+        'anio' => 'integer',
         'cilindraje_cc' => 'integer',
     ];
 
@@ -44,15 +48,15 @@ class ModeloMoto extends Model
      */
     public function scopeFiltrar(Builder $query, array $filtros): Builder
     {
-        if (!empty($filtros['marca'])) {
-            $query->where('marca', 'ilike', '%' . $filtros['marca'] . '%');
+        if (! empty($filtros['marca'])) {
+            $query->where('marca', 'ilike', '%'.$filtros['marca'].'%');
         }
 
-        if (!empty($filtros['gama'])) {
+        if (! empty($filtros['gama'])) {
             $query->where('gama', strtolower($filtros['gama']));
         }
 
-        if (!empty($filtros['propulsion'])) {
+        if (! empty($filtros['propulsion'])) {
             $query->where('propulsion', strtolower($filtros['propulsion']));
         }
 

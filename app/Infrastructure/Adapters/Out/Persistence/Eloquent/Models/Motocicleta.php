@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Motocicleta extends Model
 {
     protected $table = 'motocicleta';
+
     protected $primaryKey = 'vin';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -28,8 +32,8 @@ class Motocicleta extends Model
 
     protected $casts = [
         'garantia_hasta' => 'date',
-        'precio_lista'   => 'decimal:2',
-        'descuento'      => 'decimal:2',
+        'precio_lista' => 'decimal:2',
+        'descuento' => 'decimal:2',
     ];
 
     public function modeloMoto()
@@ -58,8 +62,8 @@ class Motocicleta extends Model
     public function mantenimientosGarantiaUsados(): int
     {
         return $this->ordenesServicio()
-                    ->whereNotNull('nro_mant_garantia')
-                    ->count();
+            ->whereNotNull('nro_mant_garantia')
+            ->count();
     }
 
     /**
@@ -68,6 +72,7 @@ class Motocicleta extends Model
     public function tieneGarantiaDisponible(): bool
     {
         $vigentePorFecha = $this->garantia_hasta ? now()->toDateString() <= $this->garantia_hasta : true;
+
         return $vigentePorFecha && ($this->mantenimientosGarantiaUsados() < 3);
     }
 }

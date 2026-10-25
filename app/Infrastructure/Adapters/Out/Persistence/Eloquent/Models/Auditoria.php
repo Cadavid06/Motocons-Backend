@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auditoria extends Model
 {
     protected $table = 'auditoria';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -42,14 +43,14 @@ class Auditoria extends Model
         ?string $username = null
     ): self {
         return self::create([
-            'fecha_hora'    => now(),
-            'accion'        => strtoupper($accion),
-            'entidad'       => strtolower($entidad),
-            'registro_id'   => $registroId,
-            'datos_antes'   => is_array($datosAntes) ? json_encode($datosAntes) : $datosAntes,
+            'fecha_hora' => now(),
+            'accion' => strtoupper($accion),
+            'entidad' => strtolower($entidad),
+            'registro_id' => $registroId,
+            'datos_antes' => is_array($datosAntes) ? json_encode($datosAntes) : $datosAntes,
             'datos_despues' => is_array($datosDespues) ? json_encode($datosDespues) : $datosDespues,
-            'ip_origen'     => $ip ?? request()->ip(),
-            'username'      => $username ?? auth()->user()?->username,
+            'ip_origen' => $ip ?? request()->ip(),
+            'username' => $username ?? auth()->user()?->username,
         ]);
     }
 }

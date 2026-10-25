@@ -12,11 +12,30 @@ class VentaRequisito
         private ?string $validadoPor = null
     ) {}
 
-    public function getVentaNumero(): string { return $this->ventaNumero; }
-    public function getRequisitoId(): int { return $this->requisitoId; }
-    public function getEstado(): string { return $this->estado; }
-    public function getSoporteAdjunto(): ?string { return $this->soporteAdjunto; }
-    public function getValidadoPor(): ?string { return $this->validadoPor; }
+    public function getVentaNumero(): string
+    {
+        return $this->ventaNumero;
+    }
+
+    public function getRequisitoId(): int
+    {
+        return $this->requisitoId;
+    }
+
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function getSoporteAdjunto(): ?string
+    {
+        return $this->soporteAdjunto;
+    }
+
+    public function getValidadoPor(): ?string
+    {
+        return $this->validadoPor;
+    }
 
     public function adjuntarSoporte(string $rutaArchivo): void
     {

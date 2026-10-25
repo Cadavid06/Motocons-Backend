@@ -11,10 +11,25 @@ class OrdenServicioProducto
         private float $valorUnit
     ) {}
 
-    public function getOrdenServicioNumero(): string { return $this->ordenServicioNumero; }
-    public function getProductoReferencia(): string { return $this->productoReferencia; }
-    public function getCantidad(): float { return $this->cantidad; }
-    public function getValorUnit(): float { return $this->valorUnit; }
+    public function getOrdenServicioNumero(): string
+    {
+        return $this->ordenServicioNumero;
+    }
+
+    public function getProductoReferencia(): string
+    {
+        return $this->productoReferencia;
+    }
+
+    public function getCantidad(): float
+    {
+        return $this->cantidad;
+    }
+
+    public function getValorUnit(): float
+    {
+        return $this->valorUnit;
+    }
 
     public function subtotal(): float
     {

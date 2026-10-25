@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Venta extends Model
 {
     protected $table = 'venta';
+
     protected $primaryKey = 'numero';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -31,22 +35,22 @@ class Venta extends Model
     ];
 
     protected $casts = [
-        'fecha'               => 'datetime',
+        'fecha' => 'datetime',
         'aceptacion_terminos' => 'datetime',
         'comision_porcentaje' => 'decimal:2',
-        'comision_valor'      => 'decimal:2',
+        'comision_valor' => 'decimal:2',
     ];
 
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->cliente_num_doc);
+            ->where('num_doc', $this->cliente_num_doc);
     }
 
     public function vendedor()
     {
         return $this->belongsTo(Empleado::class, 'vendedor_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->vendedor_num_doc);
+            ->where('num_doc', $this->vendedor_num_doc);
     }
 
     public function promocion()

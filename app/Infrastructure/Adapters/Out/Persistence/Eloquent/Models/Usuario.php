@@ -10,9 +10,13 @@ class Usuario extends Authenticatable
     use Notifiable;
 
     protected $table = 'usuario';
+
     protected $primaryKey = 'username';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -45,13 +49,13 @@ class Usuario extends Authenticatable
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->cliente_num_doc);
+            ->where('num_doc', $this->cliente_num_doc);
     }
 
     public function empleado()
     {
         return $this->belongsTo(Empleado::class, 'empleado_tipo_doc', 'tipo_doc')
-                    ->where('num_doc', $this->empleado_num_doc);
+            ->where('num_doc', $this->empleado_num_doc);
     }
 
     public function auditorias()

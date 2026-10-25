@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pago extends Model
 {
     protected $table = 'pago';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,8 +23,8 @@ class Pago extends Model
     ];
 
     protected $casts = [
-        'valor'               => 'decimal:2',
-        'fecha'               => 'datetime',
+        'valor' => 'decimal:2',
+        'fecha' => 'datetime',
         'cierre_fecha_inicio' => 'date',
     ];
 

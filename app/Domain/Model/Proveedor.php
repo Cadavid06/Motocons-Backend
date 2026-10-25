@@ -10,9 +10,20 @@ class Proveedor
         private ?string $emailOrdenes = null
     ) {}
 
-    public function getNit(): string { return $this->nit; }
-    public function getRazonSocial(): string { return $this->razonSocial; }
-    public function getEmailOrdenes(): ?string { return $this->emailOrdenes; }
+    public function getNit(): string
+    {
+        return $this->nit;
+    }
+
+    public function getRazonSocial(): string
+    {
+        return $this->razonSocial;
+    }
+
+    public function getEmailOrdenes(): ?string
+    {
+        return $this->emailOrdenes;
+    }
 
     public function actualizarEmailOrdenes(string $nuevoEmail): void
     {

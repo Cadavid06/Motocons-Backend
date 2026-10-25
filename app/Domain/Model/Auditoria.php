@@ -18,15 +18,50 @@ class Auditoria
         private ?string $username = null
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getFechaHora(): DateTimeImmutable { return $this->fechaHora; }
-    public function getAccion(): string { return $this->accion; }
-    public function getEntidad(): string { return $this->entidad; }
-    public function getRegistroId(): string { return $this->registroId; }
-    public function getDatosAntes(): ?string { return $this->datosAntes; }
-    public function getDatosDespues(): ?string { return $this->datosDespues; }
-    public function getIpOrigen(): ?string { return $this->ipOrigen; }
-    public function getUsername(): ?string { return $this->username; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getFechaHora(): DateTimeImmutable
+    {
+        return $this->fechaHora;
+    }
+
+    public function getAccion(): string
+    {
+        return $this->accion;
+    }
+
+    public function getEntidad(): string
+    {
+        return $this->entidad;
+    }
+
+    public function getRegistroId(): string
+    {
+        return $this->registroId;
+    }
+
+    public function getDatosAntes(): ?string
+    {
+        return $this->datosAntes;
+    }
+
+    public function getDatosDespues(): ?string
+    {
+        return $this->datosDespues;
+    }
+
+    public function getIpOrigen(): ?string
+    {
+        return $this->ipOrigen;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
 
     public static function crear(
         string $accion,
@@ -39,7 +74,7 @@ class Auditoria
     ): self {
         return new self(
             id: null,
-            fechaHora: new DateTimeImmutable(),
+            fechaHora: new DateTimeImmutable,
             accion: strtoupper($accion),
             entidad: strtolower($entidad),
             registroId: $registroId,

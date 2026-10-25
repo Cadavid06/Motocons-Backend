@@ -16,17 +16,45 @@ class Promocion
         private ?string $propulsionObjetivo = null
     ) {}
 
-    public function getId(): ?int { return $this->id; }
-    public function getTipo(): string { return $this->tipo; }
-    public function getValor(): float { return $this->valor; }
-    public function getFechaInicio(): DateTimeImmutable { return $this->fechaInicio; }
-    public function getFechaFin(): DateTimeImmutable { return $this->fechaFin; }
-    public function getGamaObjetivo(): ?string { return $this->gamaObjetivo; }
-    public function getPropulsionObjetivo(): ?string { return $this->propulsionObjetivo; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function getValor(): float
+    {
+        return $this->valor;
+    }
+
+    public function getFechaInicio(): DateTimeImmutable
+    {
+        return $this->fechaInicio;
+    }
+
+    public function getFechaFin(): DateTimeImmutable
+    {
+        return $this->fechaFin;
+    }
+
+    public function getGamaObjetivo(): ?string
+    {
+        return $this->gamaObjetivo;
+    }
+
+    public function getPropulsionObjetivo(): ?string
+    {
+        return $this->propulsionObjetivo;
+    }
 
     public function esVigenteEnFecha(?DateTimeImmutable $fecha = null): bool
     {
-        $fecha = $fecha ?? new DateTimeImmutable();
+        $fecha = $fecha ?? new DateTimeImmutable;
+
         return $fecha >= $this->fechaInicio && $fecha <= $this->fechaFin;
     }
 
@@ -48,6 +76,7 @@ class Promocion
         if (strcasecmp($this->tipo, 'PORCENTAJE') === 0) {
             return round($precioBase * ($this->valor / 100), 2);
         }
+
         return min($this->valor, $precioBase);
     }
 }

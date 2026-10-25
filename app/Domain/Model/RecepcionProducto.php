@@ -10,7 +10,18 @@ class RecepcionProducto
         private int $cantidadRecibida
     ) {}
 
-    public function getRecepcionId(): int { return $this->recepcionId; }
-    public function getProductoReferencia(): string { return $this->productoReferencia; }
-    public function getCantidadRecibida(): int { return $this->cantidadRecibida; }
+    public function getRecepcionId(): int
+    {
+        return $this->recepcionId;
+    }
+
+    public function getProductoReferencia(): string
+    {
+        return $this->productoReferencia;
+    }
+
+    public function getCantidadRecibida(): int
+    {
+        return $this->cantidadRecibida;
+    }
 }
