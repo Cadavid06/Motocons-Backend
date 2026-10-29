@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_CSRF: "true"
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_DATABASE: motocons_db
+      DB_USERNAME: motocons
+      DB_PASSWORD: motocons
+      DB_SSLMODE: disable
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >-
+      sh -c "php database/migrate.php --fresh &&
+             php database/seed.php &&
+             php -S 0.0.0.0:8000 -t public public/router.php"
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: motocons_db
+      POSTGRES_USER: motocons
+      POSTGRES_PASSWORD: motocons
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U motocons -d motocons_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

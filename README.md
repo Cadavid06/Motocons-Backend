@@ -1,141 +1,132 @@
-# MOTOCONS - Sistema de Gestión de Concesionario y Taller
+# MOTOCONS - Versión PHP puro
 
-Sistema integral de gestión comercial, operativa y financiera para el almacén, concesionario y taller de motocicletas **MOTOCONS**, desarrollado con **Laravel 12 / PHP 8.3+** bajo **Arquitectura Hexagonal (Puertos y Adaptadores)** en el backend y arquitectura **MVC** con **Tailwind CSS v4** e iconografía vectorial **Lucide** en la interfaz web, con persistencia en **PostgreSQL (Neon Cloud)**.
+Conversión del proyecto Laravel **Motocons-app** a **PHP puro**, sin Laravel, sin Composer, sin Blade, sin Eloquent y sin Vite. Se conserva la arquitectura hexagonal (Dominio / Aplicación / Infraestructura), las reglas de negocio y el contrato de la API.
 
----
+El proyecto Laravel original permanece intacto en `../Motocons-app`.
 
-## Documentación Técnica
+## Requisitos
 
-* [**Guía de Arquitectura Hexagonal y Casos de Uso**](docs/ARQUITECTURA_HEXAGONAL.md)
-* [**Guía de la Capa de Dominio y Sintaxis PHP 8.3+**](docs/GUIA_CAPA_DOMINIO.md)
+- PHP 8.1 o superior (probado con 8.3).
+- Extensiones: `pdo`, `pdo_sqlite` y/o `pdo_pgsql`, `fileinfo`, `mbstring`, `session`.
+- Servidor web (Apache/Nginx) o el servidor embebido de PHP.
 
----
+No se necesita Composer ni `npm`.
 
-## Módulo de Créditos y Financiación
+## Inicio rápido con SQLite
 
-El sistema cuenta con el flujo completo de estudio y aprobación de créditos para los convenios de **Crédito Brilla** (Gases del Caribe / Surtigas) y **ServiCrédito**:
-
-### 1. Endpoints de la API REST (`routes/api.php`)
-
-| Método | Endpoint | Caso de Uso | Descripción |
-| :--- | :--- | :--- | :--- |
-| **`GET`** | `/api/creditos/requisitos` | `ListarRequisitosCreditoUseCase` | Consulta catálogo de requisitos con filtro opcional `?medio_pago=BRILLA` o `SERVICREDITO`. |
-| **`POST`** | `/api/creditos/solicitudes` | `IniciarSolicitudCreditoUseCase` | Radica la venta en estado `EN_PROCESO_CREDITO`, reserva la motocicleta por VIN y genera los requisitos en `PENDIENTE`. |
-| **`POST`** | `/api/creditos/solicitudes/{num}/requisitos/{id}/soporte` | `AdjuntarSoporteRequisitoUseCase` | Carga y archiva el archivo soporte (PDF, JPG, PNG de hasta 5MB). |
-| **`PATCH`** | `/api/creditos/solicitudes/{num}/requisitos/{id}/evaluar` | `EvaluarRequisitoCreditoUseCase` | Dictamen del analista de crédito (`VALIDAR` o `RECHAZAR`) registrando auditoría. |
-| **`POST`** | `/api/creditos/solicitudes/{num}/aprobar` | `AprobarCreditoUseCase` | Evalúa cumplimiento de requisitos obligatorios y avanza la venta a `PAGADA`. |
-
-### 2. Reglas de Negocio en la Capa de Dominio
-
-* **Invariante de Recibo de Gas:** En créditos Brilla es obligatorio adjuntar y validar el recibo de gas cancelado. De lo contrario, se dispara la excepción de negocio `RequisitoCreditoInvalidoException`.
-* **Reserva de Unidad:** Al seleccionar una motocicleta por su VIN, la unidad cambia atómicamente su estado a `RESERVADA` para evitar sobreventa.
-* **Inmutabilidad:** Las ventas que hayan sido entregadas o anuladas quedan bloqueadas contra modificaciones (`VentaNoEditableException`).
-
----
-
-## Interfaz Web de Usuario (MVC)
-
-La capa web (`routes/web.php`) expone una interfaz gráfica con diseño inspirado en aplicaciones de escritorio tipo **JavaFX Modena / Caspian UI**:
-
-* **Ruta Web:** `http://127.0.0.1:8000/` o `http://127.0.0.1:8000/creditos`
-* **Estética:** Paleta sobria blanco-gris (`#edf0f5`), barra de título y barra de estado de escritorio, pestañas físicas (`TabPane`), tablas estructuradas e iconografía vectorial SVG oficial de **Lucide** (sin emojis informales).
-* **Pestañas funcionales:**
-  1. *Iniciar Solicitud:* Radicación de créditos con selección de cliente, motocicleta y financiera.
-  2. *Cargar Soportes:* Carga asíncrona de archivos con indicadores de estado.
-  3. *Mesa de Control y Aprobación:* Panel de dictamen para analistas y botón de emisión de aprobación final.
-  4. *Catálogo de Requisitos:* Matriz paramétrica de documentos por financiera.
-
----
-
-## Instalación y Puesta en Marcha
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/Cadavid06/Motocons-Backend.git
-cd Motocons-Backend
-```
-
-### 2. Instalar dependencias
-```bash
-composer install
-npm install
-```
-
-### 3. Configurar variables de entorno
-Copia la plantilla:
 ```bash
 cp .env.example .env
-php artisan key:generate
+php database/migrate.php --fresh
+php database/seed.php
+php -S 127.0.0.1:8000 -t public public/router.php
 ```
 
-Configura tu conexión a PostgreSQL (o utiliza Neon Cloud con SSL):
+Abrir: `http://127.0.0.1:8000/` o `http://127.0.0.1:8000/creditos`.
+
+## Uso con PostgreSQL
+
+Editar `.env`:
+
 ```env
 DB_CONNECTION=pgsql
-DB_HOST=ep-nameless-band-b7mawtj7-pooler.c-13.us-east-1.aws.neon.tech;hostaddr=100.62.177.240
+DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=neondb
-DB_USERNAME=neondb_owner
+DB_DATABASE=motocons_db
+DB_USERNAME=postgres
 DB_PASSWORD=tu_password
-DB_SSLMODE=require
+DB_SSLMODE=prefer
 ```
 
-### 4. Migraciones y Seeders
-Ejecuta las migraciones y puebla los datos iniciales y de demostración:
-```bash
-php artisan migrate --force
-php artisan db:seed --force
-```
-
-### 5. Compilar Frontend y Levantar Servidor
-```bash
-npm run build
-php artisan serve
-```
-La aplicación quedará disponible en `http://127.0.0.1:8000`.
-
----
-
-## Ejecución de Pruebas Automatizadas
-
-La suite incluye pruebas de integración y características ejecutadas en SQLite in-memory:
+Luego:
 
 ```bash
-php artisan test
+php database/migrate.php --fresh
+php database/seed.php
+php -S 127.0.0.1:8000 -t public public/router.php
 ```
 
----
+## Uso con Docker
 
-## Estructura del Código Fuente
+```bash
+docker compose up --build
+```
+
+El contenedor aplica el esquema, carga los datos de demostración y levanta la aplicación en `http://127.0.0.1:8000`.
+
+## Pruebas
+
+```bash
+php tests/run.php
+```
+
+La suite usa SQLite en un archivo temporal, ejecuta el esquema y los seeders en cada prueba y valida el flujo completo: catálogo, radicación, reserva de VIN, carga de soportes, dictamen y aprobación.
+
+Con Docker:
+
+```bash
+docker run --rm -v "$PWD":/app -w /app php:8.3-cli php tests/run.php
+```
+
+## API REST
+
+| Método | Endpoint | Descripción |
+| :--- | :--- | :--- |
+| `GET` | `/api/creditos/requisitos` | Catálogo de requisitos. Acepta `?medio_pago=BRILLA` o `SERVICREDITO`. |
+| `POST` | `/api/creditos/solicitudes` | Radica la solicitud, crea la venta y los requisitos `PENDIENTE`. |
+| `POST` | `/api/creditos/solicitudes/{num}/requisitos/{id}/soporte` | Carga un soporte PDF/JPG/PNG de hasta 5 MB. |
+| `PATCH` | `/api/creditos/solicitudes/{num}/requisitos/{id}/evaluar` | Dictamen `VALIDAR` o `RECHAZAR`. |
+| `POST` | `/api/creditos/solicitudes/{num}/aprobar` | Aprobación final; la venta pasa a `PAGADA`. |
+| `GET` | `/storage/{ruta}` | Descarga los soportes almacenados. |
+| `GET` | `/up` | Estado del servicio. |
+
+## Estructura
 
 ```text
-app/
-├── Domain/                                     # CAPA DE DOMINIO (Núcleo Puro sin ORMs)
-│   ├── Model/                                  # Entidades POPO (Venta, Motocicleta, RequisitoCredito, etc.)
-│   └── Exceptions/                             # Excepciones de negocio (RequisitoCreditoInvalidoException, etc.)
-│
-├── Application/                                # CAPA DE APLICACIÓN (Casos de Uso)
-│   ├── DTO/                                    # Data Transfer Objects
-│   ├── Ports/
-│   │   ├── In/                                 # Interfaces de Casos de Uso
-│   │   └── Out/                                # Interfaces de Repositorios
-│   └── Services/                               # Implementación de Casos de Uso
-│
-├── Infrastructure/                             # CAPA DE INFRAESTRUCTURA
-│   ├── Adapters/
-│   │   ├── In/Http/
-│   │   │   ├── Controllers/                    # Controladores API REST y Web
-│   │   │   └── Requests/                       # FormRequests de validación
-│   │   └── Out/Persistence/Eloquent/
-│   │       ├── Models/                         # Modelos Eloquent
-│   │       ├── Mappers/                        # Mappers Dominio <-> Eloquent
-│   │       └── Repositories/                   # Implementación de Ports/Out
-│   └── Providers/
-│       └── HexagonalServiceProvider.php        # Registro de dependencias IoC
-│
-└── Shared/                                     # Traits y utilidades compartidas
+public/
+├── index.php              # Front controller
+├── router.php             # Router para php -S
+└── .htaccess              # Rewrite para Apache
+
+src/
+├── Kernel.php             # Arranque, rutas, CSRF, manejo de errores y DI manual
+├── Domain/                # Entidades y excepciones (sin dependencias de framework)
+├── Application/           # DTOs, puertos y casos de uso
+├── Infrastructure/
+│   ├── Http/
+│   │   ├── Controllers/   # Controladores API y web
+│   │   └── Requests/      # Validación manual (reemplazo de FormRequest)
+│   └── Persistence/Pdo/
+│       ├── Mappers/       # Dominio <-> filas PDO
+│       ├── Repositories/  # Implementación de puertos de salida
+│       ├── ReadModels/    # Consultas para la interfaz web
+│       ├── Schema.php     # Aplicación de esquemas SQL
+│       └── DemoSeeder.php # Datos de demostración
+└── Support/               # Autoload, Env, Request, Response, Router, View,
+                           # Validator, Storage, Session, Csrf y Database
+
+views/                     # Plantillas PHP planas (reemplazo de Blade)
+database/                  # Esquemas SQLite/PostgreSQL, migrate.php y seed.php
+tests/run.php              # Suite de pruebas sin framework
 ```
 
----
+## Equivalencias Laravel -> PHP puro
 
-## Equipo de Desarrollo
-**Ingeniería de Sistemas - Universidad de Córdoba (Sede Sahagún)**
+| Laravel | PHP puro |
+| :--- | :--- |
+| `routes/web.php`, `routes/api.php` | Rutas declaradas en `src/Kernel.php` |
+| Controladores con `JsonResponse` | Controladores con `App\Support\Response` |
+| `FormRequest` | Clases en `src/Infrastructure/Http/Requests` + `App\Support\Validator` |
+| Eloquent + migraciones | Repositorios PDO + `database/schema.{sqlite,pgsql}.sql` |
+| Seeders | `App\Infrastructure\Persistence\Pdo\DemoSeeder` |
+| Blade | Plantillas `.php` en `views/` |
+| `Storage::disk('public')` | `App\Support\Storage` + ruta `/storage/{ruta}` |
+| CSRF de Laravel | `App\Support\Csrf` con sesión nativa PHP |
+| Contenedor IoC | Cableado manual en `Kernel::router()` |
+| Vite + Tailwind + Lucide | Tailwind v4 y Lucide por CDN |
+
+## Notas
+
+- La interfaz usa Tailwind CSS v4 y Lucide desde CDN, por lo que necesita conexión a internet para verse con estilos e iconos. El comportamiento y el HTML son los mismos.
+- Los archivos se guardan en `storage/app/public/soportes_credito` y se sirven mediante la ruta `/storage/{ruta}` con protección contra path traversal.
+- `APP_CSRF=true` protege las peticiones mutantes. El JavaScript envía el token en `X-CSRF-TOKEN`.
+- Las contraseñas de `.env` y los archivos cargados no se versionan (`.gitignore`).
